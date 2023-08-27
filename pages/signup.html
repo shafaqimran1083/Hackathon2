@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+    <div class="main">
+<div class="b1">
+    Personal Blogging App
+</div>
+<div class="b2">
+   <a href="./signin.html"> Login</a>
+</div>
+    </div>
+    <div class="main1">
+<h3>Signup</h3>
+    </div>
+    <div class="log2">
+<div class="inp">
+<input placeholder="First Name" type="text">
+<input placeholder="Last Name" type="text">
+<input placeholder="Email" type="text">
+<input placeholder="Password" type="password">
+<input placeholder="Repeat Password" type="password">
+<input class="btn" type="button" value="Signup">
+
+</div>
+    </div>
+    <script>
+//         language="javascript">
+ 
+//  function loginPage(form) {
+//  if (form.FirstName.value=="username") { 
+//  if (form.passWord.value=="password") {              
+//  location="index.html" 
+//  } else {
+//  alert("Incorrect detail Password")
+//  }
+//  } else {  alert("Incorrect detail Username")
+//  }
+//  }
+  
+    // </script>
+
+ <script src="./JS/firebase.mjs"></script> 
+<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-analytics.js"></script> -->
+<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js"></script>
+<script>
+    // Initialize Firebase
+    var firebaseConfig = {
+  apiKey: "AIzaSyBqeEsz-OOPdLh-6QVFixYq_eOLVey_-Bs",
+  authDomain: "shafaq-ad46c.firebaseapp.com",
+  databaseURL: "https://shafaq-ad46c-default-rtdb.firebaseio.com",
+  projectId: "shafaq-ad46c",
+  storageBucket: "shafaq-ad46c.appspot.com",
+  messagingSenderId: "786582256482",
+  appId: "1:786582256482:web:8b6126b016345f39680a3b",
+  measurementId: "G-VS4V81MM3Y"
+};
+    firebase.initializeApp(firebaseConfig);
+
+    // Event listener for signup button
+    var signupButton = document.getElementById('signupButton');
+    signupButton.addEventListener('click', function() {
+        var firstName = document.getElementById('firstName').value;
+        var lastName = document.getElementById('lastName').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var repeatPassword = document.getElementById('repeatPassword').value;
+
+        if (password === repeatPassword) {
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(function(userCredential) {
+                    var user = userCredential.user;
+                    // Now, you can store additional user data to Firestore or Realtime Database
+                })
+                .catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorCode, errorMessage);
+                });
+        } else {
+            alert("Passwords do not match.");
+        }
+        console.log("Signup button clicked!");
+            console.log("First Name:", firstName);
+            console.log("Last Name:", lastName);
+            console.log("Email:", email);
+            console.log("Password:", password);
+            console.log("Repeat Password:", repeatPassword);
+        });
+
+</script>
+
+
+</body>
+</html>
